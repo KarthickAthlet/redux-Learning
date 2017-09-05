@@ -43,7 +43,7 @@ class CourseExample extends Component {
     //   }
     // });
 
-    this.props.dispatch(courseAction.CourseActionAdd(this.state.courses));
+    this.props.CourseActionAdd(this.state.courses);
   }
 
   courseRow(course, index) {
@@ -79,4 +79,11 @@ function mapStateToProps(state, ownProps) {
     courses: state.CourseReducers
   };
 }
-export default connect(mapStateToProps)(CourseExample);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    CourseActionAdd: course => dispatch(courseAction.CourseActionAdd(course))
+  }
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CourseExample);
